@@ -11,8 +11,7 @@
   ],
   "license": "MIT",
   "activationEvents": [
-    "onCommand:dvIdentityManager.openIdentityManager",
-    "*"
+    "onCommand:dvIdentityManager.openIdentityManager"
   ],
   "main": "./out/extension.js",
   "contributes": {
