@@ -1,0 +1,105 @@
+{
+  "name": "dv-identity-manager",
+  "displayName": "DV Identity Manager",
+  "description": "Manage Dataverse identity participation with preview-first validation and execution reporting.",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "license": "MIT",
+  "activationEvents": [
+    "onCommand:dvIdentityManager.openIdentityManager",
+    "*"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "dvIdentityManager.openIdentityManager",
+        "title": "DV Identity Manager: Open Identity Manager"
+      }
+    ],
+    "configuration": {
+      "title": "DV Identity Manager",
+      "properties": {
+        "dvForgeLab.environments": {
+          "type": "array",
+          "default": [],
+          "description": "Shared Dataverse environments available to DV ForgeLab utilities.",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "url"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Environment label, for example DEV or SIT."
+              },
+              "url": {
+                "type": "string",
+                "description": "Dataverse environment URL, for example https://org.crm6.dynamics.com."
+              },
+              "tenantId": {
+                "type": "string",
+                "description": "Optional tenant ID for Azure CLI token acquisition."
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.120.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "typescript-eslint": "^8.56.1",
+    "eslint": "^9.39.3",
+    "typescript": "^5.9.3",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2"
+  },
+  "keywords": [
+    "dataverse",
+    "power platform",
+    "dynamics 365",
+    "identity",
+    "roles",
+    "teams",
+    "application users",
+    "participation",
+    "vscode",
+    "dvforgelab",
+    "powerapps",
+    "power apps",
+    "crm",
+    "model driven app",
+    "microsoft dataverse",
+    "preview first",
+    "identity participation"
+  ],
+  "publisher": "dv-forgelab",
+  "icon": "images/dv-utilities-icon-128.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yongjinsim-sudo/dv-identity-manager"
+  },
+  "bugs": {
+    "url": "https://github.com/yongjinsim-sudo/dv-identity-manager/issues"
+  },
+  "homepage": "https://github.com/yongjinsim-sudo/dv-identity-manager",
+  "preview": false
+}
