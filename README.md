@@ -2,36 +2,61 @@
 
 Manage Dataverse identity participation inside VS Code.
 
+Version 1.0.0
+
 **DV Identity Manager** is a focused DV ForgeLab utility for searching Dataverse identities, reviewing participation, staging assignment/membership changes, previewing them, and applying them deliberately.
 
 It is intentionally about **participation**, not authority.
 
 DV Identity Manager manages assignments and memberships. It does not edit privileges, calculate effective access, simulate RBAC, or determine security authority.
 
+Changes are staged locally, validated, previewed, and only applied when explicitly confirmed.
+
 ## Highlights
 
 - Identity Browser for users, teams, and application users
 - Current participation view for roles and team memberships
 - Browser-driven staging for assign/remove operations
-- Secondary CSV/JSON definition import and export
+- Definition staging workspace
 - CSV import and export
 - JSON import and export
+- Automatic definition merge and deduplication
 - Preview-first validation workflow
 - Environment-aware safety indicators
 - Explicit apply semantics
 - Execution reporting and outcome tracking
 - Shared DV ForgeLab Dataverse environment settings
 
+## Screenshots
+
+### Identity Browser
+
+Search users, teams, and application users, then open participation management with a single click.
+
+![Identity Browser](docs/dvim_page_top.png)
+
+### Participation Management
+
+Review current participation, stage role assignments and team membership changes, and prepare preview-first updates.
+
+![Participation Management](docs/dvim_page_mid.png)
+
+### Preview and Execution Reporting
+
+Validate staged participation, preview Dataverse mutations, apply explicitly, and review execution outcomes.
+
+![Execution Reporting](docs/dvim_page_bottom.png)
+
 ## Preview-first workflow
 
 ```text
 Connect
 ↓
-Search identity or import definitions
+Search identity
 ↓
-Load participation
+Manage participation
 ↓
-Stage participation changes
+Stage changes locally
 ↓
 Validate
 ↓
@@ -42,12 +67,13 @@ Apply participation changes
 Review execution report
 ```
 
-## Supported v0.1 participation types
+## Supported Participation Types
 
 - User → Role assignments
 - User → Team memberships
 - Team → Role assignments
 - Application User → Role assignments
+- Application User → Team memberships
 
 ## Boundary
 
@@ -89,6 +115,21 @@ DV Identity Manager follows the DV ForgeLab preview-first invariant.
 
 Identity participation changes are staged locally, validated, previewed, and explicitly applied by the user. Dataverse identity participation is never changed without an explicit preview and confirmation step.
 
+## Validation & Platform Awareness
+
+DVIM validates participation definitions before preview and apply.
+
+Validation surfaces:
+
+- Missing identifiers
+- Unsupported participation combinations
+- Managed application-user warnings
+- Access-team role assignment restrictions
+- Definition import diagnostics
+- Duplicate and merged participation definitions
+
+DVIM does not bypass Dataverse protections. Platform-level restrictions are surfaced during execution reporting.
+
 ## Future Direction
 
 Future DV Quick Run comparison providers may generate `.dvim.json` identity definition artifacts from observed identity participation drift.
@@ -106,11 +147,3 @@ Built by **DV ForgeLab**.
 VS Code Marketplace:
 
 https://marketplace.visualstudio.com/items?itemName=dv-forgelab.dv-quick-run
-
-## Validation Notes
-
-DVIM validates participation definitions before preview and apply. Some Dataverse restrictions are only fully enforced by the platform at apply time.
-
-- Managed application users are surfaced as warnings because Dataverse may allow some membership changes while blocking some role changes.
-- Access teams are surfaced as warnings because Dataverse may reject role assignment or removal for access teams.
-- DVIM does not bypass Dataverse protection. Platform errors are reported in execution results.

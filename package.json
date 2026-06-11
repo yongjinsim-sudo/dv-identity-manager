@@ -4,7 +4,7 @@
   "description": "Manage Dataverse identity participation with preview-first validation and execution reporting.",
   "version": "1.0.0",
   "engines": {
-    "vscode": "^1.85.0"
+    "vscode": "^1.120.0"
   },
   "categories": [
     "Other"
