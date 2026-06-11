@@ -18,13 +18,16 @@ Changes are staged locally, validated, previewed, and only applied when explicit
 - Current participation view for roles and team memberships
 - Browser-driven staging for assign/remove operations
 - Definition staging workspace
-- CSV import and export
-- JSON import and export
 - Automatic definition merge and deduplication
 - Preview-first validation workflow
-- Environment-aware safety indicators
+- Environment-aware classification indicators
+  - 🔴 Production environments
+  - 🟠 SIT / UAT / Test environments
+  - ⚪ Development environments
 - Explicit apply semantics
 - Execution reporting and outcome tracking
+- CSV import and export
+- JSON import and export
 - Shared DV ForgeLab Dataverse environment settings
 
 ## Screenshots
