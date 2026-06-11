@@ -1,5 +1,14 @@
 # Change Log
 
+## [1.0.2] - Documentation & Branding Refresh
+
+### Changed
+
+- Added DV ForgeLab website links across documentation.
+- Updated footer links to point to dvforgelab.com and dvquickrun.com.
+- Refreshed README screenshots and workflow documentation.
+- Improved product ecosystem references.
+
 ## [1.0.1] - Environment Safety Indicators
 
 ### Changed
