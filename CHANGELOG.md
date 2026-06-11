@@ -1,5 +1,15 @@
 # Change Log
 
+## [1.0.1] - Environment Safety Indicators
+
+### Changed
+
+- Added environment safety classification for DVIM header and preview surfaces.
+- DEV / local-style environments render as neutral grey.
+- SIT / UAT / TEST / QA / staging-style environments render as amber caution.
+- PROD / PRODUCTION / live-style environments render as red production warning.
+
+
 All notable changes to the "DV Identity Manager" extension will be documented in this file.
 
 ## [0.1.0] - Initial identity participation scaffold

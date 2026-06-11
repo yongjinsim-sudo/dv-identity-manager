@@ -16,6 +16,23 @@ type WebviewMessage = {
 	payload?: Record<string, unknown>;
 };
 
+
+function classifyEnvironmentSafety(label: string, url?: string): { safety: 'Grey' | 'Amber' | 'Red'; safetyLabel: string } {
+	const value = `${label} ${url ?? ''}`.toLowerCase();
+	const tokens = value.split(/[^a-z0-9]+/).filter(Boolean);
+	const hasToken = (...matches: string[]) => matches.some(match => tokens.includes(match) || value.includes(match));
+
+	if (hasToken('prod', 'production', 'live')) {
+		return { safety: 'Red', safetyLabel: 'Production environment' };
+	}
+
+	if (hasToken('sit', 'uat', 'test', 'tst', 'qa', 'perf', 'preprod', 'pre', 'preproduction', 'staging', 'stage')) {
+		return { safety: 'Amber', safetyLabel: 'Controlled non-production' };
+	}
+
+	return { safety: 'Grey', safetyLabel: 'Development / non-production' };
+}
+
 function createDraft(partial: Partial<IdentityDefinitionDraft> = {}): IdentityDefinitionDraft {
 	return {
 		id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,
@@ -352,7 +369,14 @@ export async function openIdentityManagerCommand(context: vscode.ExtensionContex
 			}
 			metadataClient = new IdentityMetadataClient(connection.client);
 			mutationClient = new IdentityMutationClient(connection.client, metadataClient, connection.environmentUrl);
-			state.environment = { label: connection.environmentLabel, url: connection.environmentUrl, state: 'Connected', safety: 'Grey', safetyLabel: 'Connected' };
+			const environmentSafety = classifyEnvironmentSafety(connection.environmentLabel, connection.environmentUrl);
+			state.environment = {
+				label: connection.environmentLabel,
+				url: connection.environmentUrl,
+				state: 'Connected',
+				safety: environmentSafety.safety,
+				safetyLabel: environmentSafety.safetyLabel
+			};
 			await vscode.window.withProgress({ location: vscode.ProgressLocation.Notification, title: `${commandName}: Loading identity participation metadata`, cancellable: false }, loadIdentityContext);
 			updateValidation(state);
 			state.message = { kind: 'Info', text: `Connected to ${connection.environmentLabel}. ${state.identities.length} identity/identities, ${state.roles.length} role(s), and ${state.teams.length} team(s) loaded.` };
