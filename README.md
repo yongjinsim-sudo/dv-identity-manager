@@ -2,7 +2,7 @@
 
 Manage Dataverse identity participation inside VS Code.
 
-Version 1.0.2
+Version 1.0.3
 
 **DV Identity Manager** is a focused DV ForgeLab utility for searching Dataverse identities, reviewing participation, staging assignment/membership changes, previewing them, and applying them deliberately.
 
@@ -29,6 +29,7 @@ Changes are staged locally, validated, previewed, and only applied when explicit
 - CSV import and export
 - JSON import and export
 - Shared DV ForgeLab Dataverse environment settings
+- Direct DV ForgeLab feedback integration
 
 ## Screenshots
 
@@ -111,6 +112,22 @@ It does not:
 ```text
 DV Identity Manager: Open Identity Manager
 ```
+
+## Feedback
+
+DV Identity Manager includes direct integration with the DV ForgeLab feedback portal.
+
+Share:
+
+* Feature requests
+* Bug reports
+* Metadata reconstruction scenarios
+* Workflow suggestions
+* Product feedback
+
+Feedback is routed through the shared DV ForgeLab feedback experience and automatically identifies DV Identity Manager as the source product.
+
+https://www.dvforgelab.com/feedback
 
 ## Philosophy
 

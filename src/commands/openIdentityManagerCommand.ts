@@ -11,6 +11,13 @@ import { renderIdentityManagerHtml } from '../webview/renderIdentityManagerHtml'
 const panelTitle = 'DV Identity Manager';
 const commandName = 'DV Identity Manager';
 
+
+function buildFeedbackUrl(context: vscode.ExtensionContext): vscode.Uri {
+	const packageJson = context.extension.packageJSON as { version?: string };
+	const version = encodeURIComponent(packageJson.version ?? 'unknown');
+	return vscode.Uri.parse(`https://dvforgelab.com/feedback?product=dvim&version=${version}`);
+}
+
 type WebviewMessage = {
 	command?: string;
 	payload?: Record<string, unknown>;
@@ -677,6 +684,9 @@ export async function openIdentityManagerCommand(context: vscode.ExtensionContex
 					updateValidation(state);
 					render();
 					break;
+				case 'openFeedback':
+					await vscode.env.openExternal(buildFeedbackUrl(context));
+					break;
 			}
 		} catch (error) {
 			state.message = { kind: 'Error', text: error instanceof Error ? error.message : String(error) };
@@ -684,6 +694,6 @@ export async function openIdentityManagerCommand(context: vscode.ExtensionContex
 		}
 	});
 
+	state.message = { kind: 'Info', text: 'Connect to Dataverse to load identity participation metadata. No connection is made until you click Connect.' };
 	render();
-	void connect(false);
 }

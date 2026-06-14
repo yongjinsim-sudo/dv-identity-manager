@@ -1,6 +1,17 @@
 # Change Log
 
-## [1.0.2] - Documentation & Branding Refresh
+## 1.0.3 — Feedback to DV ForgeLab
+
+- Added a Feedback button linking to the shared DV ForgeLab feedback portal.
+- Feedback opens `https://dvforgelab.com/feedback` with DV Identity Manager and the current extension version preselected.
+
+### Changed
+
+- Disabled automatic Dataverse connection when DV Identity Manager opens.
+- DV Identity Manager now waits for the user to click **Connect** before loading environment metadata or identity data.
+- Aligned initial connection behaviour with other DV ForgeLab utilities.
+
+## 1.0.2 - Documentation & Branding Refresh
 
 ### Changed
 
@@ -9,7 +20,7 @@
 - Refreshed README screenshots and workflow documentation.
 - Improved product ecosystem references.
 
-## [1.0.1] - Environment Safety Indicators
+## 1.0.1 - Environment Safety Indicators
 
 ### Changed
 
@@ -21,7 +32,7 @@
 
 All notable changes to the "DV Identity Manager" extension will be documented in this file.
 
-## [0.1.0] - Initial identity participation scaffold
+## 0.1.0 - Initial identity participation scaffold
 
 ### Added
 
